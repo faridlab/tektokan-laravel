@@ -77,6 +77,9 @@ $ laravel new [your-project-name]
 $ composer create-project --prefer-dist laravel/laravel [your-project-name]
 OR
 $ composer create-project --prefer-dist laravel/laravel=6.x [your-project-name]
+```
+
+```bash
 Creating a "laravel/laravel" project at "./[your-project-name]"
 Installing laravel/laravel (v8.4.1)
   - Installing laravel/laravel (v8.4.1): Downloading (100%)
