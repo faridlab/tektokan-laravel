@@ -267,3 +267,52 @@ Route::get('adult', function () {
     return 'Youre adult now';
 })->middleware('checkage');
 ```
+
+# Controllers
+
+## Creating Controller
+To create a new controller, use the `make:controller` Artisan command:
+```s
+$ php artisan make:controller PhotoController
+```
+
+`/app/Http/Controllers/PhotoController.php`
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class PhotoController extends Controller
+{
+    public function index()
+    {
+        return 'You see all photos in the gallery';
+    }
+
+    public function show($id)
+    {
+        return 'Showing photo by ID: '.$id;
+    }
+}
+```
+
+Route
+```php
+// Add namespace
+Route::group([
+    'namespace' => 'App\Http\Controllers'
+], function() {
+    Route::get('photos', 'PhotoController@index');
+    Route::get('photos/{id}', 'PhotoController@show');
+});
+
+// OR
+
+// import class controller
+use App\Http\Controllers\PhotoController;
+
+Route::get('photos', [PhotoController::class, 'index']);
+Route::get('photos/{id}', [PhotoController::class, 'show']);
+```
