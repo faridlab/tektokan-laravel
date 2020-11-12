@@ -154,3 +154,35 @@ Route::get('/transportation/motorcycle', function () {
     return 'Motorcycle is your transportation';
 });
 ```
+
+## Route Parameters
+```php
+Route::get('user/{id}', function ($id) {
+    return 'User with ID: '.$id;
+});
+
+// THis route will not known
+Route::get('user/{name}', function ($name) {
+    return 'User with name: '.$name;
+});
+
+Route::get('greeting/{name?}', function ($name = 'Someone') {
+    return 'Hello '.$name;
+});
+```
+
+## Regular Expression Constraints
+```php
+Route::get('user/{id}', function ($id) {
+    return 'User with ID: '.$id;
+})->where('id', '[0-9]+');
+
+// Router knows this route
+Route::get('user/{name}', function ($name) {
+    return 'User with name: '.$name;
+})->where('name', '[A-Za-z]+');
+
+Route::get('greeting/{name?}', function ($name = 'Someone') {
+    return 'Hello '.$name;
+});
+```
