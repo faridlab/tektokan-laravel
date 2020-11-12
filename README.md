@@ -427,3 +427,48 @@ use App\Http\Controllers\PhotoController;
 
 Route::resource('photos', PhotoController::class);
 ```
+
+# Views
+
+## Create Layout
+```php
+<!-- Stored in resources/views/layouts/app.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel - @yield('title')</title>
+    @yield('css')
+</head>
+<body>
+@section('header')
+    <header>HEADER</header>
+@show
+<div class="container">
+    @yield('content')
+</div>
+@section('footer')
+    <footer>FOOTER</footer>
+@show
+@yield('js')
+</body>
+</html>
+```
+
+```php
+<!-- Stored in resources/views/photos/index.blade.php -->
+@extends('layouts.app')
+
+@section('title', 'Photos Gallery')
+
+@section('header')
+    @parent
+    <p>SIDEBAR.</p>
+@endsection
+
+@section('content')
+    <p>This is my body content.</p>
+@endsection
+
+```
