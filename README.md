@@ -116,3 +116,41 @@ Run this command below at your root project
 $ php artisan serve
 Laravel development server started: http://127.0.0.1:8000
 ```
+
+# Routing
+
+## Available Router Methods
+The router allows you to register routes that respond to any HTTP verb:
+```php
+Route::get($uri, $callback);
+Route::post($uri, $callback);
+Route::put($uri, $callback);
+Route::patch($uri, $callback);
+Route::delete($uri, $callback);
+Route::options($uri, $callback);
+```
+
+## Example simple route
+```php
+// Public Transport
+Route::get('/transportation/mrt', function () {
+    return 'MRT is your transportation';
+});
+
+Route::get('/transportation/transjakarta', function () {
+    return 'Trans Jakarta is your transportation';
+});
+
+Route::get('/transportation/metromini', function () {
+    return 'Metromini is your transportation';
+});
+
+// Private Transport
+Route::get('/transportation/car', function () {
+    return 'Car is your transportation';
+});
+
+Route::get('/transportation/motorcycle', function () {
+    return 'Motorcycle is your transportation';
+});
+```
