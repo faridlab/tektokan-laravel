@@ -186,3 +186,27 @@ Route::get('greeting/{name?}', function ($name = 'Someone') {
     return 'Hello '.$name;
 });
 ```
+
+## Route Groups
+```php
+// Share attributes Middleware
+Route::middleware(['first', 'second'])->group($callback);
+Route::group([
+    'middleware' => ['first', 'second']
+], function () {
+    Route::get($uri, $callback);
+    Route::post($uri, $callback);
+});
+
+// Nested route with prefix
+Route::group([
+    'prefix' => 'books',
+], function () {
+    Route::get('/', function() {
+        return 'Here list of Books';
+    });
+    Route::post('/', function() {
+        return 'Post new Book?.';
+    });
+});
+```
