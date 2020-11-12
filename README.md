@@ -210,3 +210,60 @@ Route::group([
     });
 });
 ```
+
+# Middleware
+
+## Defining Middleware
+To create a new middleware, use the `make:middleware` Artisan command:
+```s
+$ php artisan make:middleware CheckAge
+```
+
+`/app/Http/Middleware/CheckAge.php`
+```php
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+
+class CheckAge
+{
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @return mixed
+     */
+    public function handle($request, Closure $next)
+    {
+        if ($request->age <= 18) {
+            return redirect('teenager');
+        }
+        return $next($request);
+    }
+}
+```
+
+## Registering Middleware
+`app/Http/Kernel.php`
+```php
+...
+protected $routeMiddleware = [
+    ...
+    'checkage' => \App\Http\Middleware\CheckAge::class,
+];
+...
+```
+
+Add route and checkage middleware
+```php
+Route::get('teenager', function () {
+    return 'Youre smell like kencur';
+});
+
+Route::get('adult', function () {
+    return 'Youre adult now';
+})->middleware('checkage');
+```
