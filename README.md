@@ -316,3 +316,114 @@ use App\Http\Controllers\PhotoController;
 Route::get('photos', [PhotoController::class, 'index']);
 Route::get('photos/{id}', [PhotoController::class, 'show']);
 ```
+
+## Resource Controllers
+To create a new controller, use the `make:controller` Artisan command:
+```s
+$ php artisan make:controller PhotoController --resource
+```
+
+`/app/Http/Controllers/PhotoController.php`
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class PhotoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+}
+```
+
+Route
+```php
+// Add namespace
+Route::group([
+    'namespace' => 'App\Http\Controllers'
+], function() {
+    Route::resource('photos', 'PhotoController');
+});
+
+// OR
+
+// import class controller
+use App\Http\Controllers\PhotoController;
+
+Route::resource('photos', PhotoController::class);
+```
